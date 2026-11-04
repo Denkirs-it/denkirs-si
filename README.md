@@ -11,16 +11,27 @@ for the configurator page of denkirs.si. It is a generated file: do not edit it 
 Each release is a git tag `v<version>`, and the page loads exactly that tag:
 
 ```
-https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@v0.4.1/configurator/dkc3-0.4.1.js
+https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@v0.4.2/configurator/dkc3-0.4.2.js
 ```
 
 If jsDelivr does not answer, the page takes the same file from `fastly.jsdelivr.net` (same path), then from
-GitHub Pages: `https://denkirs-it.github.io/denkirs-si/configurator/dkc3-0.4.1.js`.
+GitHub Pages: `https://denkirs-it.github.io/denkirs-si/configurator/dkc3-0.4.2.js`.
 The browser checks the file against its SRI hash (sha384) before running it.
 
-| Version | Date       | SRI                                                                       |
-|---------|------------|---------------------------------------------------------------------------|
-| 0.4.1   | 04.11.2026 | `sha384-678qz2phIcJWq6Lt3M03XUAw4V95BjDbLvPlKy9JR3gn0Wry/AO1HDtgrC5pgE6Z` |
+The page also holds the configurator's texts for the site translation; they carry a texts version, and the
+program translates only with blocks of the same version (otherwise it stays in English).
+
+| Version | Date       | Texts    | SRI                                                                       |
+|---------|------------|----------|---------------------------------------------------------------------------|
+| 0.4.1   | 04.11.2026 | —        | `sha384-678qz2phIcJWq6Lt3M03XUAw4V95BjDbLvPlKy9JR3gn0Wry/AO1HDtgrC5pgE6Z` |
+| 0.4.2   | 04.11.2026 | c9a01889 | `sha384-tlsRs8Q2tXEj0v+Lw5keaghASEumDzpNFS3MizG3nHGorSPP0yEBVjUQrCw7YV6P` |
+
+## 3D models
+
+`3d/` — simplified 3D models of DENKIRS fixtures for the configurator's 3D studio: `index.json` and one
+`<DKxxxx>.dkm` per fixture (format v1: `Float32[8]` vertex count, index count, min xyz, max xyz in mm, Y up →
+`Int16[n·3]` positions within the box → padding to 4 bytes → `Uint16|Uint32` indices). The program loads them
+from the same tag as itself: `https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@v0.4.2/3d/`.
 
 ### Rules
 
