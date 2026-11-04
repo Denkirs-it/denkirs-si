@@ -24,7 +24,10 @@ The browser checks the file against its SRI hash (sha384) before running it.
 
 ### Rules
 
-- A released tag is never moved or deleted: jsDelivr keeps a tagged file forever. A fix is a new version.
+- Tags are set by the workflow `release-tags`: a new `configurator/dkc3-<x.y.z>.js` pushed to `main` gets the tag
+  `v<x.y.z>` at the commit that added it. Nobody sets or moves tags by hand.
+- A released tag is never moved or deleted: jsDelivr keeps a tagged file forever. A fix is a new version
+  (the workflow fails if a released file was changed).
 - Files of released versions stay in `main`, because GitHub Pages serves `main`.
 - A release reaches the site only when the version number and SRI hash are changed on the page itself.
 

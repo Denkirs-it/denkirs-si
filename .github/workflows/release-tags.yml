@@ -1,0 +1,51 @@
+name: Release tags
+# A new configurator/dkc3-<x.y.z>.js in main gets the tag v<x.y.z>: block 01 on denkirs.si loads exactly that tag
+# from jsDelivr. A tag is never moved; a released file must not change (a fix is a new version), the run fails if it did.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'configurator/dkc3-*.js'
+      - '.github/workflows/release-tags.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-tags
+  cancel-in-progress: false
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Tag new versions, check released ones
+        run: |
+          set -euo pipefail
+          git fetch --tags --force
+          bad=0
+          shopt -s nullglob
+          for f in configurator/dkc3-*.js; do
+            v="${f#configurator/dkc3-}"; v="${v%.js}"
+            if [[ ! "$v" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then echo "::warning file=$f::not a x.y.z version, skipped"; continue; fi
+            t="v$v"
+            sri="sha384-$(openssl dgst -sha384 -binary "$f" | openssl base64 -A)"
+            if git rev-parse -q --verify "refs/tags/$t" >/dev/null; then
+              if ! git diff --quiet "$t" HEAD -- "$f"; then
+                echo "::error file=$f::$f changed after release $t — the site keeps loading the tagged file; make a new version instead"
+                bad=1
+              fi
+              continue
+            fi
+            c=$(git log -n1 --format=%H -- "$f")
+            git tag "$t" "$c"
+            git push origin "refs/tags/$t"
+            echo "- \`$t\` → ${c:0:7} · \`$sri\`" | tee -a "$GITHUB_STEP_SUMMARY"
+          done
+          exit $bad
