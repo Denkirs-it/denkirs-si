@@ -49,3 +49,21 @@ jobs:
             echo "- \`$t\` → ${c:0:7} · \`$sri\`" | tee -a "$GITHUB_STEP_SUMMARY"
           done
           exit $bad
+
+      # A release-x.y.z branch holds a version while it is being checked (a push to main tags it at once). Once its
+      # last commit is in main and carries a version tag, the branch is only a duplicate label: remove it. Commits and
+      # tags stay; a branch not yet in main or without a tag is kept.
+      - name: Remove release branches that are already in main
+        run: |
+          set -euo pipefail
+          git fetch --prune --tags origin '+refs/heads/*:refs/remotes/origin/*'
+          for b in $(git for-each-ref --format='%(refname:strip=3)' 'refs/remotes/origin/release-*'); do
+            sha=$(git rev-parse "refs/remotes/origin/$b")
+            tags=$(git tag --points-at "$sha" --list 'v*' | tr '\n' ' ')
+            if git merge-base --is-ancestor "$sha" refs/remotes/origin/main && [ -n "$tags" ]; then
+              git push origin --delete "$b"
+              echo "- removed branch \`$b\` (${sha:0:7} is in main, tag ${tags})" | tee -a "$GITHUB_STEP_SUMMARY"
+            else
+              echo "- kept branch \`$b\` (${sha:0:7}: not in main yet or no version tag)" | tee -a "$GITHUB_STEP_SUMMARY"
+            fi
+          done

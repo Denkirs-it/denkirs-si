@@ -39,6 +39,8 @@ from the same tag as itself: `https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@
 
 - Tags are set by the workflow `release-tags`: a new `configurator/dkc3-<x.y.z>.js` pushed to `main` gets the tag
   `v<x.y.z>` at the commit that added it. Nobody sets or moves tags by hand.
+- A version may wait in a branch `release-x.y.z` while it is checked; once it is in `main` and tagged, the same
+  workflow removes that branch (commits and tags stay).
 - A released tag is never moved or deleted: jsDelivr keeps a tagged file forever. A fix is a new version
   (the workflow fails if a released file was changed).
 - Files of released versions stay in `main`, because GitHub Pages serves `main`.
