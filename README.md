@@ -11,11 +11,11 @@ for the configurator page of denkirs.si. It is a generated file: do not edit it 
 Each release is a git tag `v<version>`, and the page loads exactly that tag:
 
 ```
-https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@v0.4.4/configurator/dkc3-0.4.4.js
+https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@v0.4.5/configurator/dkc3-0.4.5.js
 ```
 
 If jsDelivr does not answer, the page takes the same file from `fastly.jsdelivr.net` (same path), then from
-GitHub Pages: `https://denkirs-it.github.io/denkirs-si/configurator/dkc3-0.4.4.js`.
+GitHub Pages: `https://denkirs-it.github.io/denkirs-si/configurator/dkc3-0.4.5.js`.
 The browser checks the file against its SRI hash (sha384) before running it.
 
 The page also holds the configurator's texts for the site translation; they carry a texts version, and the
@@ -27,13 +27,14 @@ program translates only with blocks of the same version (otherwise it stays in E
 | 0.4.2   | 04.11.2026 | c9a01889 | `sha384-tlsRs8Q2tXEj0v+Lw5keaghASEumDzpNFS3MizG3nHGorSPP0yEBVjUQrCw7YV6P` |
 | 0.4.3   | 04.11.2026 | c9a01889 | `sha384-1cGdtQEc0Bwr1O0Ktu9M7qXg99xOy3+i+YmJ4F0WERdMoqU+Z7aDTMP/5Ylt3WCT` |
 | 0.4.4   | 04.11.2026 | c9a01889 | `sha384-JrIzKiL9KW/Lo/zERw0j+3TObpiJ32j9r0W92psCbqEH6/qljrFFOmR4ZfxjoW+T` |
+| 0.4.5   | 04.11.2026 | c9a01889 | `sha384-LGEZjazR2z+vjQxvcRG/LAv2YG0qtg0swwZ80zfUELalxehGpVrlNwLkh9BK4WMr` |
 
 ## 3D models
 
 `3d/` — simplified 3D models of DENKIRS fixtures for the configurator's 3D studio: `index.json` and one
 `<DKxxxx>.dkm` per fixture (format v1: `Float32[8]` vertex count, index count, min xyz, max xyz in mm, Y up →
 `Int16[n·3]` positions within the box → padding to 4 bytes → `Uint16|Uint32` indices). The program loads them
-from the same tag as itself: `https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@v0.4.4/3d/`.
+from the same tag as itself: `https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@v0.4.5/3d/`.
 
 ### Rules
 
