@@ -36,29 +36,21 @@ program translates only with blocks of the same version (otherwise it stays in E
 Tag `catalog-v<version>`:
 
 ```
-https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@catalog-v2.3.0/catalog/dkcat-2.3.0.js
+https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@catalog-v2.3.1/catalog/dkcat-2.3.1.js
 ```
 
 | Version | Date       | SRI                                                                       |
 |---------|------------|---------------------------------------------------------------------------|
-| 2.3.0   | 09.11.2026 | `sha384-TuSlgEWNLEbCYx/Q+asKJ4PdGCCP0ofLodN1cXOqmib7yKp46Qui3xzsoCp+Ah9v` |
+| 2.3.0   | 09.11.2026 | `sha384-TuSlgEWNLEbCYx/Q+asKJ4PdGCCP0ofLodN1cXOqmib7yKp46Qui3xzsoCp+Ah9v` — not used: one style for the category pages' hero on phones has to be in the page, not in the file |
+| 2.3.1   | 09.11.2026 | `sha384-lYkbIzurMhoWyaPdEisdeFUCQKro6aMAl9QudmnyRmj0wPL+/0nLiqFBDm0Rpujm` |
+
+The catalog is loaded the same way as the configurator: jsDelivr, then `fastly.jsdelivr.net`, then GitHub Pages, each
+checked against the SRI hash. It is a generated file: do not edit it here.
 
 ## Header logic
 
-`header/dkh-<version>.js` — the logic of the site header: dropdown and mobile menu, product search, SEO module
-(title, description, H1, JSON-LD). The menu itself and its styles stay in the page, so the site translation sees
-the texts. Tag `header-v<version>`:
-
-```
-https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@header-v3.9.0/header/dkh-3.9.0.js
-```
-
-| Version | Date       | SRI                                                                       |
-|---------|------------|---------------------------------------------------------------------------|
-| 3.9.0   | 09.11.2026 | `sha384-FTyFMFyXJ7yqH3BOPQ+RMe2GJetB+hhfe/HWLx57n3FUKJPlz8VRS5YthfmoB7jW` |
-
-Both are loaded the same way as the configurator: jsDelivr, then `fastly.jsdelivr.net`, then GitHub Pages, each
-checked against the SRI hash. They are generated files: do not edit them here.
+`header/dkh-3.9.0.js` (tag `header-v3.9.0`, 09.11.2026) was published but is not used: the header's menu, mobile
+menu and search are the site's navigation, so their code stays in the page and does not depend on a CDN.
 
 ## 3D models
 
