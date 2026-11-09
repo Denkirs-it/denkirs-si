@@ -29,6 +29,37 @@ program translates only with blocks of the same version (otherwise it stays in E
 | 0.4.4   | 04.11.2026 | c9a01889 | `sha384-JrIzKiL9KW/Lo/zERw0j+3TObpiJ32j9r0W92psCbqEH6/qljrFFOmR4ZfxjoW+T` |
 | 0.4.5   | 04.11.2026 | c9a01889 | `sha384-LGEZjazR2z+vjQxvcRG/LAv2YG0qtg0swwZ80zfUELalxehGpVrlNwLkh9BK4WMr` |
 
+## Catalog engine
+
+`catalog/dkcat-<version>.js` — the product catalog of denkirs.si: grid, filters, listing search, product popup
+(its styles are inside the file). A small loader in the site header fetches it only on pages that have a catalog.
+Tag `catalog-v<version>`:
+
+```
+https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@catalog-v2.3.0/catalog/dkcat-2.3.0.js
+```
+
+| Version | Date       | SRI                                                                       |
+|---------|------------|---------------------------------------------------------------------------|
+| 2.3.0   | 09.11.2026 | `sha384-TuSlgEWNLEbCYx/Q+asKJ4PdGCCP0ofLodN1cXOqmib7yKp46Qui3xzsoCp+Ah9v` |
+
+## Header logic
+
+`header/dkh-<version>.js` — the logic of the site header: dropdown and mobile menu, product search, SEO module
+(title, description, H1, JSON-LD). The menu itself and its styles stay in the page, so the site translation sees
+the texts. Tag `header-v<version>`:
+
+```
+https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@header-v3.9.0/header/dkh-3.9.0.js
+```
+
+| Version | Date       | SRI                                                                       |
+|---------|------------|---------------------------------------------------------------------------|
+| 3.9.0   | 09.11.2026 | `sha384-FTyFMFyXJ7yqH3BOPQ+RMe2GJetB+hhfe/HWLx57n3FUKJPlz8VRS5YthfmoB7jW` |
+
+Both are loaded the same way as the configurator: jsDelivr, then `fastly.jsdelivr.net`, then GitHub Pages, each
+checked against the SRI hash. They are generated files: do not edit them here.
+
 ## 3D models
 
 `3d/` — simplified 3D models of DENKIRS fixtures for the configurator's 3D studio: `index.json` and one
@@ -39,7 +70,8 @@ from the same tag as itself: `https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@
 ### Rules
 
 - Tags are set by the workflow `release-tags`: a new `configurator/dkc3-<x.y.z>.js` pushed to `main` gets the tag
-  `v<x.y.z>` at the commit that added it. Nobody sets or moves tags by hand.
+  `v<x.y.z>` at the commit that added it (`catalog/dkcat-…` → `catalog-v…`, `header/dkh-…` → `header-v…`).
+  Nobody sets or moves tags by hand.
 - A version may wait in a branch `release-x.y.z` while it is checked; once it is in `main` and tagged, the same
   workflow removes that branch (commits and tags stay).
 - A released tag is never moved or deleted: jsDelivr keeps a tagged file forever. A fix is a new version

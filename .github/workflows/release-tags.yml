@@ -1,12 +1,15 @@
 name: Release tags
-# A new configurator/dkc3-<x.y.z>.js in main gets the tag v<x.y.z>: block 01 on denkirs.si loads exactly that tag
-# from jsDelivr. A tag is never moved; a released file must not change (a fix is a new version), the run fails if it did.
+# A new release file in main gets its tag, and the page of denkirs.si loads exactly that tag from jsDelivr:
+#   configurator/dkc3-<x.y.z>.js → v<x.y.z>   catalog/dkcat-<x.y.z>.js → catalog-v<x.y.z>   header/dkh-<x.y.z>.js → header-v<x.y.z>
+# A tag is never moved; a released file must not change (a fix is a new version), the run fails if it did.
 
 on:
   push:
     branches: [main]
     paths:
       - 'configurator/dkc3-*.js'
+      - 'catalog/dkcat-*.js'
+      - 'header/dkh-*.js'
       - '.github/workflows/release-tags.yml'
   workflow_dispatch:
 
@@ -31,10 +34,11 @@ jobs:
           git fetch --tags --force
           bad=0
           shopt -s nullglob
-          for f in configurator/dkc3-*.js; do
-            v="${f#configurator/dkc3-}"; v="${v%.js}"
+          for f in configurator/dkc3-*.js catalog/dkcat-*.js header/dkh-*.js; do
+            case "$f" in configurator/*) p="v";; catalog/*) p="catalog-v";; header/*) p="header-v";; esac
+            v="${f##*/}"; v="${v#*-}"; v="${v%.js}"
             if [[ ! "$v" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then echo "::warning file=$f::not a x.y.z version, skipped"; continue; fi
-            t="v$v"
+            t="$p$v"
             sri="sha384-$(openssl dgst -sha384 -binary "$f" | openssl base64 -A)"
             if git rev-parse -q --verify "refs/tags/$t" >/dev/null; then
               if ! git diff --quiet "$t" HEAD -- "$f"; then
@@ -59,7 +63,7 @@ jobs:
           git fetch --prune --tags origin '+refs/heads/*:refs/remotes/origin/*'
           for b in $(git for-each-ref --format='%(refname:strip=3)' 'refs/remotes/origin/release-*'); do
             sha=$(git rev-parse "refs/remotes/origin/$b")
-            tags=$(git tag --points-at "$sha" --list 'v*' | tr '\n' ' ')
+            tags=$(git tag --points-at "$sha" --list 'v*' 'catalog-v*' 'header-v*' | tr '\n' ' ')
             if git merge-base --is-ancestor "$sha" refs/remotes/origin/main && [ -n "$tags" ]; then
               git push origin --delete "$b"
               echo "- removed branch \`$b\` (${sha:0:7} is in main, tag ${tags})" | tee -a "$GITHUB_STEP_SUMMARY"
