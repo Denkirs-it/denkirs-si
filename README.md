@@ -36,13 +36,14 @@ program translates only with blocks of the same version (otherwise it stays in E
 Tag `catalog-v<version>`:
 
 ```
-https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@catalog-v2.3.1/catalog/dkcat-2.3.1.js
+https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@catalog-v2.3.2/catalog/dkcat-2.3.2.js
 ```
 
 | Version | Date       | SRI                                                                       |
 |---------|------------|---------------------------------------------------------------------------|
 | 2.3.0   | 09.11.2026 | `sha384-TuSlgEWNLEbCYx/Q+asKJ4PdGCCP0ofLodN1cXOqmib7yKp46Qui3xzsoCp+Ah9v` — not used: one style for the category pages' hero on phones has to be in the page, not in the file |
 | 2.3.1   | 09.11.2026 | `sha384-lYkbIzurMhoWyaPdEisdeFUCQKro6aMAl9QudmnyRmj0wPL+/0nLiqFBDm0Rpujm` |
+| 2.3.2   | 10.11.2026 | `sha384-RjOTW7yE8cLPF+jNBnA8HpAWw/3GYqpot+DJzuw3f9AXi7VJpymawJeenj6ujOz9` |
 
 The catalog is loaded the same way as the configurator: jsDelivr, then `fastly.jsdelivr.net`, then GitHub Pages, each
 checked against the SRI hash. It is a generated file: do not edit it here.
