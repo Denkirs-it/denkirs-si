@@ -36,7 +36,7 @@ program translates only with blocks of the same version (otherwise it stays in E
 Tag `catalog-v<version>`:
 
 ```
-https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@catalog-v2.4.0/catalog/dkcat-2.4.0.js
+https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@catalog-v2.5.0/catalog/dkcat-2.5.0.js
 ```
 
 | Version | Date       | SRI                                                                       |
@@ -45,6 +45,7 @@ https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@catalog-v2.4.0/catalog/dkcat-2
 | 2.3.1   | 09.11.2026 | `sha384-lYkbIzurMhoWyaPdEisdeFUCQKro6aMAl9QudmnyRmj0wPL+/0nLiqFBDm0Rpujm` |
 | 2.3.2   | 10.11.2026 | `sha384-RjOTW7yE8cLPF+jNBnA8HpAWw/3GYqpot+DJzuw3f9AXi7VJpymawJeenj6ujOz9` |
 | 2.4.0   | 11.11.2026 | `sha384-As4s2Y2fXH0ggspxQTWlk5coStYn+C5AyhrJIEKB4kYwtO/c0ng238Hlho9cLTjv` |
+| 2.5.0   | 11.11.2026 | `sha384-0gLbsBc970XUw6JvSwVHCoOC4RMANeH4Q8wHX9Rp0k8xyLiwjOlsoCcFmTkRmvw7` |
 
 The catalog is loaded the same way as the configurator: jsDelivr, then `fastly.jsdelivr.net`, then GitHub Pages, each
 checked against the SRI hash. It is a generated file: do not edit it here.
