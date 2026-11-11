@@ -81,12 +81,12 @@ from the same tag as itself: `https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@
 `letters/` — pictures and PDF files of the letters of recommendation from DENKIRS partners, shown in the
 «Recommended by our partners» block on the home page and on /cooperation. Published with the partners' consent.
 For each letter: `<id>-thumb.jpg` (card), `<id>-p<N>.jpg` (pages, 1240 px), `<id>.pdf` (download).
-A set of files is a tag `letters-v<version>`; the pages load exactly that tag:
+A set of files is pinned by its commit; the pages load exactly that commit (it never changes):
 
 ```
-https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@letters-v1.0.0/letters/alina-vieru-ro-thumb.jpg
+https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@ccdafcce6d40aa6a5c5818ce8a2e5cbee9e76dc6/letters/alina-vieru-ro-thumb.jpg
 ```
 
-| Version | Date       | Letters |
-|---------|------------|---------|
-| 1.0.0   | 11.11.2026 | alina-vieru-ro, sviesos-akademija-lt, art-electric-lv, dart-color-ro, sviestuvu-pasaulis-lt |
+| Set | Commit | Date       | Letters |
+|-----|--------|------------|---------|
+| 1.0.0 | `ccdafcc` | 11.11.2026 | alina-vieru-ro, sviesos-akademija-lt, art-electric-lv, dart-color-ro, sviestuvu-pasaulis-lt |
