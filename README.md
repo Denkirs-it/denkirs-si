@@ -76,6 +76,21 @@ from the same tag as itself: `https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@
 
 © DENKIRS EU d.o.o.
 
+## Product files
+
+`products/` — files offered for download on the product pages of denkirs.si:
+`datasheets/<page>.pdf` — the product datasheet (A4, two pages), made from the product table;
+`ies/DK-EU-<model>.ies` — photometric files (IESNA LM-63) for lighting design software such as DIALux and Relux.
+A set of files is pinned by its commit; the pages load exactly that commit (it never changes):
+
+```
+https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@5cf5aac1d948e92248219f36b0c477dcda806d95/products/datasheets/dk-eu-5368-bk.pdf
+```
+
+| Set | Commit | Date       | Files |
+|-----|--------|------------|-------|
+| 1.0.0 | `5cf5aac` | 25.11.2026 | datasheet dk-eu-5368-bk; IES DK-EU-5335 |
+
 ## Partner recommendations
 
 `letters/` — pictures and PDF files of the letters of recommendation from DENKIRS partners, shown in the
