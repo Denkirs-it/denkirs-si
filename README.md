@@ -36,7 +36,7 @@ program translates only with blocks of the same version (otherwise it stays in E
 Tag `catalog-v<version>`:
 
 ```
-https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@catalog-v2.6.0/catalog/dkcat-2.6.0.js
+https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@catalog-v2.6.1/catalog/dkcat-2.6.1.js
 ```
 
 | Version | Date       | SRI                                                                       |
@@ -47,6 +47,7 @@ https://cdn.jsdelivr.net/gh/Denkirs-it/denkirs-si@catalog-v2.6.0/catalog/dkcat-2
 | 2.4.0   | 11.11.2026 | `sha384-As4s2Y2fXH0ggspxQTWlk5coStYn+C5AyhrJIEKB4kYwtO/c0ng238Hlho9cLTjv` |
 | 2.5.0   | 11.11.2026 | `sha384-0gLbsBc970XUw6JvSwVHCoOC4RMANeH4Q8wHX9Rp0k8xyLiwjOlsoCcFmTkRmvw7` |
 | 2.6.0   | 26.11.2026 | `sha384-AEUS8AhuFm0z35ccEI3x6dwO2kYbF+Pbz/0eAcDkWlh/wRNVT6EUuCI+auFj7hjV` — a card opens the product page, "+" adds to the project |
+| 2.6.1   | 26.11.2026 | `sha384-Caf2yF50MuZx4AfistrLIVyEkpijJJ8GbcTMjjd/nTHvSOPiS9DgH4O4YO/wUoIh` — prices with two decimals and "incl. VAT" |
 
 The catalog is loaded the same way as the configurator: jsDelivr, then `fastly.jsdelivr.net`, then GitHub Pages, each
 checked against the SRI hash. It is a generated file: do not edit it here.
